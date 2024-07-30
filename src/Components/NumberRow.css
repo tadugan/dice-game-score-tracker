@@ -1,0 +1,13 @@
+.number-row-container {
+  display: flex;
+  gap: 8px;
+}
+
+.box {
+  border: 1px solid #ffffff;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
