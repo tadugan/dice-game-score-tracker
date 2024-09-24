@@ -5,8 +5,12 @@ import './NumberRow.css'
 function NumberRow({numberData}) {
 
   const boxes = numberData.map(box => {
-    return <p key={box.id} className='box'>{box.number}</p>
+    return <p key={box.id} className='box' onClick={() => onClick(box.id)}>{box.number}</p>
   })
+
+  function onClick(id) {
+    console.log('CLICK', id)
+  }
 
   return (
     <>
