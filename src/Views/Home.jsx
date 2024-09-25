@@ -1,5 +1,6 @@
 import NumberRow from '../Components/NumberRow'
 import './Home.css'
+import PropTypes from 'prop-types'
 
 const numberData = [
   {
@@ -19,13 +20,17 @@ const numberData = [
   },
 ]
 
-function Home() {
+function Home({dispatch}) {
 
   return (
     <>
-      <NumberRow numberData={numberData}></NumberRow>
+      <NumberRow numberData={numberData} dispatch={dispatch}></NumberRow>
     </>
   )
+}
+
+Home.propTypes = {
+  dispatch: PropTypes.func
 }
 
 export default Home
