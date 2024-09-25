@@ -18,7 +18,7 @@ function createNumberBoxArray(colorString) {
 
   for (let i=2; i<13; i++) {
     numArray.push({
-      number: i,
+      value: i,
       color: colorString,
       id: colorString + i.toString(),
       scored: false,
@@ -29,6 +29,14 @@ function createNumberBoxArray(colorString) {
   if (colorString === 'green' || colorString === 'blue') {
     numArray.reverse();
   }
+
+  numArray.push({
+    value: 'L',
+    color: colorString,
+    id: colorString + 'Lock',
+    scored: false,
+    disabled: false
+  })
 
   return numArray;
 }

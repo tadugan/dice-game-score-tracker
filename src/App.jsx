@@ -20,7 +20,7 @@ function reducer(state, action) {
           if (num.id == action.payload.box.id) {
             return { ...num, scored: !num.scored}
           }
-          else if ( disableRowColorCompare(num.color, num.number, action.payload.box.number) && num.scored !== true) {
+          else if ( disableRowColorCompare(num.color, num.value, action.payload.box.value) && num.scored !== true) {
             return { ...num, disabled: true }
           }
           else {

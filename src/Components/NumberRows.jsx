@@ -29,7 +29,7 @@ function NumberRows({numberData, dispatch}) {
         if (box.scored === true) {
           return <p key={box.id} className={boxClass} onClick={() => handleClick(box)}>X</p>
         }
-        return <p key={box.id} className={boxClass} onClick={() => handleClick(box)}>{box.number}</p>
+        return <p key={box.id} className={boxClass} onClick={() => handleClick(box)}>{box.value}</p>
       })
 
       elementsArray.push({id: color, contents: boxArray})
