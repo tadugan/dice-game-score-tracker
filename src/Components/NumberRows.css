@@ -1,0 +1,41 @@
+.number-row-container {
+  display: flex;
+  gap: 8px;
+}
+
+.box {
+  border: 1px solid #ffffff;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 60%;
+}
+
+.box-red {
+  background-color: #ff3333;
+}
+
+.box-yellow {
+  background-color: #ffff33;
+}
+
+.box-green {
+  background-color: #33ff33;
+}
+
+.box-blue {
+  background-color: #33adff;
+}
+
+.box-scored {
+  opacity: 100%;
+}
+
+.box-disabled {
+  background-color: grey; 
+  opacity: 30%;
+  /*  TODO: pick a better grey */
+}
