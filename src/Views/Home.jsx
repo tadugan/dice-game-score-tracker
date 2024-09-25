@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 function Home({dispatch, state}) {
 
-  const numberData = state.red
+  const numberData = state
   return (
     <>
       <NumberRows numberData={numberData} dispatch={dispatch} state={state}></NumberRows>

@@ -8,30 +8,48 @@ import classNames from 'classnames'
 // eslint-disable-next-line react/prop-types
 function NumberRows({numberData, dispatch}) {
 
-  const boxes = numberData.map(box => {
-    const boxClass = classNames({
-      'box': true,
-      'box-red': box.color === 'red',
-      'box-yellow': box.color === 'yellow',
-      'box-green': box.color === 'green',
-      'box-blue': box.color === 'blue',
-      'box-scored': box.scored === true,
-      'box-disabled': true
-      // 'box-disabled': box.disabled === true
-    })
-
-    return <p key={box.id} className={boxClass} onClick={() => toggleStatus(box.id, box.color)}>{box.number}</p>
+  const boxes = createBoxElementsArray(numberData);
+  const displayElements = boxes.map(colorRow => {
+    return <div key={colorRow.id} className='number-row'>{colorRow.contents}</div>
   })
 
-  function toggleStatus(boxId, boxColor) {
+  function createBoxElementsArray(stateObj) {
+    const boxColors = ['red', 'yellow', 'green', 'blue']
+    let elementsArray = []
+
+    for (let color of boxColors) {
+      const boxArray = stateObj[color].map(box => {
+        const boxClass = classNames({
+          'box': true,
+          'box-red': box.color === 'red',
+          'box-yellow': box.color === 'yellow',
+          'box-green': box.color === 'green',
+          'box-blue': box.color === 'blue',
+          'box-scored': box.scored === true,
+          'box-disabled': box.disabled === true
+        })
+    
+        return <p key={box.id} className={boxClass} onClick={() => toggleStatus(box)}>{box.number}</p>
+      })
+
+      elementsArray.push({id: color, contents: boxArray})
+    }
+    
+    return elementsArray
+  }
+
+  function toggleStatus(box) {
     console.log('click')
-    dispatch({ type: ACTIONS.TOGGLE_STATUS, payload: { id: boxId, color: boxColor }})
+    dispatch({ type: ACTIONS.TOGGLE_STATUS, payload: { box: box }})
   }
 
   return (
     <>
-      <div className='number-row-container'>
+      {/* <div className='number-row-container'>
         {boxes}
+      </div> */}
+      <div className='number-row-container'>
+        {displayElements}
       </div>
     </>
   )
@@ -39,7 +57,7 @@ function NumberRows({numberData, dispatch}) {
 
 NumberRows.propTypes = {
   dispatch: PropTypes.func,
-  numberData: PropTypes.array,
+  numberData: PropTypes.object,
 }
 
 export default NumberRows

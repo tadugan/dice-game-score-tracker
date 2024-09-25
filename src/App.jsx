@@ -9,16 +9,17 @@ export const ACTIONS = {
 
 const initialState = createInitialStateObject()
 
-
-
 function reducer(state, action) {
   switch (action.type) {
     case ACTIONS.TOGGLE_STATUS:
       return {
         ...state,
-        [action.payload.color]: state[action.payload.color].map(num => {
-          if (num.id == action.payload.id) {
+        [action.payload.box.color]: state[action.payload.box.color].map(num => {
+          if (num.id == action.payload.box.id) {
             return { ...num, scored: !num.scored}
+          }
+          else if ( disableRowColorCompare(num.color, num.number, action.payload.box.number) && num.scored !== true) {
+            return { ...num, disabled: true }
           }
           else {
             return num
@@ -27,6 +28,15 @@ function reducer(state, action) {
       }
     default:
       return state
+  }
+}
+
+function disableRowColorCompare(color, number, scoredNumber) {
+  if (color === 'red' || color === 'yellow') {
+    return number < scoredNumber ? true : false
+  }
+  else {
+    return number > scoredNumber ? true : false
   }
 }
 

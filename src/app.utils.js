@@ -16,8 +16,12 @@ function createNumberBoxArray(colorString) {
       color: colorString,
       id: colorString + i.toString(),
       scored: false,
-      disabled: true
+      disabled: false
     })
+  }
+  
+  if (colorString === 'green' || colorString === 'blue') {
+    numArray.reverse();
   }
 
   return numArray;

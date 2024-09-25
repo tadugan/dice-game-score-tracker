@@ -1,5 +1,10 @@
 .number-row-container {
   display: flex;
+  flex-flow: column wrap;
+}
+
+.number-row {
+  display: flex;
   gap: 8px;
 }
 
@@ -20,10 +25,12 @@
 
 .box-yellow {
   background-color: #ffff33;
+  color: black;
 }
 
 .box-green {
   background-color: #33ff33;
+  color: black;
 }
 
 .box-blue {
