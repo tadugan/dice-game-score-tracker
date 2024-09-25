@@ -1,0 +1,24 @@
+.penalty-box-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.penalty-box {
+  border: 1px solid #000000;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #000000;
+  background-color: #ffffff;
+}
+
+.checked-box {
+  color: red;
+  font-size: 32px;
+  font-weight: 700;
+  margin: 16px 0 0 0;
+}

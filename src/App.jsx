@@ -5,7 +5,8 @@ import { createInitialStateObject } from './app.utils.js'
 
 export const ACTIONS = {
   TOGGLE_STATUS: 'toggleStatus',
-  TOGGLE_DISABLED: 'toggleDisabled'
+  TOGGLE_DISABLED: 'toggleDisabled',
+  TOGGLE_PENALTY: 'togglePenalty'
 }
 
 const initialState = createInitialStateObject()
@@ -36,6 +37,18 @@ function reducer(state, action) {
           }
           else {
             return num
+          }
+        })
+      }
+    case ACTIONS.TOGGLE_PENALTY:
+      return {
+        ...state,
+        penalty: state.penalty.map(penaltyBox => {
+          if (penaltyBox.id === action.payload.id) {
+            return {...penaltyBox, isChecked: !penaltyBox.isChecked}
+          }
+          else {
+            return penaltyBox
           }
         })
       }

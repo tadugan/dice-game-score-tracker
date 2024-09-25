@@ -1,11 +1,8 @@
-/* eslint-disable react/prop-types */
 import { PropTypes } from 'prop-types'
 import './NumberRows.css'
 import { ACTIONS } from '../App'
 import classNames from 'classnames'
-// import { ACTIONS } from '../App'
 
-// eslint-disable-next-line react/prop-types
 function NumberRows({numberData, dispatch}) {
 
   const boxes = createBoxElementsArray(numberData);
@@ -29,6 +26,9 @@ function NumberRows({numberData, dispatch}) {
           'box-disabled': box.disabled === true
         })
     
+        if (box.scored === true) {
+          return <p key={box.id} className={boxClass} onClick={() => handleClick(box)}>X</p>
+        }
         return <p key={box.id} className={boxClass} onClick={() => handleClick(box)}>{box.number}</p>
       })
 
@@ -57,9 +57,6 @@ function NumberRows({numberData, dispatch}) {
 
   return (
     <>
-      {/* <div className='number-row-container'>
-        {boxes}
-      </div> */}
       <div className='number-row-container'>
         {displayElements}
       </div>

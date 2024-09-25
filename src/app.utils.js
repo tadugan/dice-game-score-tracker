@@ -3,7 +3,13 @@ export function createInitialStateObject() {
     red: createNumberBoxArray('red'),
     yellow: createNumberBoxArray('yellow'),
     green: createNumberBoxArray('green'),
-    blue: createNumberBoxArray('blue')
+    blue: createNumberBoxArray('blue'),
+    penalty: [
+      {id: 1, isChecked: false},
+      {id: 2, isChecked: false},
+      {id: 3, isChecked: false},
+      {id: 4, isChecked: false},
+    ]
   }
 }
 
