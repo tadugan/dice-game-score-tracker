@@ -29,7 +29,7 @@ function NumberRows({numberData, dispatch}) {
           'box-disabled': box.disabled === true
         })
     
-        return <p key={box.id} className={boxClass} onClick={() => toggleStatus(box)}>{box.number}</p>
+        return <p key={box.id} className={boxClass} onClick={() => handleClick(box)}>{box.number}</p>
       })
 
       elementsArray.push({id: color, contents: boxArray})
@@ -38,9 +38,21 @@ function NumberRows({numberData, dispatch}) {
     return elementsArray
   }
 
+  function handleClick(box) {
+    if (box.disabled === true) {
+      toggleDisabled(box) 
+    }
+    else {
+      toggleStatus(box)
+    }
+  }
+
   function toggleStatus(box) {
-    console.log('click')
     dispatch({ type: ACTIONS.TOGGLE_STATUS, payload: { box: box }})
+  }
+
+  function toggleDisabled(box) {
+    dispatch({ type: ACTIONS.TOGGLE_DISABLED, payload: { box: box }})
   }
 
   return (
