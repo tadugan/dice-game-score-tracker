@@ -2,10 +2,11 @@ import { PropTypes } from 'prop-types'
 import './NumberRows.css'
 import { ACTIONS } from '../App'
 import classNames from 'classnames'
+import LockIcon from './Icons/LockIcon';
 
-function NumberRows({numberData, dispatch}) {
+function NumberRows({state, dispatch}) {
 
-  const boxes = createBoxElementsArray(numberData);
+  const boxes = createBoxElementsArray(state);
   const displayElements = boxes.map(colorRow => {
     return <div key={colorRow.id} className='number-row'>{colorRow.contents}</div>
   })
@@ -16,20 +17,24 @@ function NumberRows({numberData, dispatch}) {
 
     for (let color of boxColors) {
       const boxArray = stateObj[color].map(box => {
+
+        const isLockBox = box.value === 'L'
+
         const boxClass = classNames({
           'box': true,
           'box-red': box.color === 'red',
           'box-yellow': box.color === 'yellow',
           'box-green': box.color === 'green',
           'box-blue': box.color === 'blue',
-          'box-scored': box.scored === true,
-          'box-disabled': box.disabled === true
+          'box-scored': box.scored,
+          'box-disabled': box.disabled,
+          'box-lock': isLockBox
         })
     
         if (box.scored === true) {
           return <p key={box.id} className={boxClass} onClick={() => handleClick(box)}>X</p>
         }
-        return <p key={box.id} className={boxClass} onClick={() => handleClick(box)}>{box.value}</p>
+        return <p key={box.id} className={boxClass} onClick={() => handleClick(box)}>{isLockBox ? <LockIcon></LockIcon> : box.value}</p>
       })
 
       elementsArray.push({id: color, contents: boxArray})
@@ -48,11 +53,28 @@ function NumberRows({numberData, dispatch}) {
   }
 
   function toggleStatus(box) {
+    if (box.value === 'L') return
+    if (isRightmostNumber(box) && countCompletedForColor(box.color, state[box.color]) < 5) {
+      return
+    }
     dispatch({ type: ACTIONS.TOGGLE_STATUS, payload: { box: box }})
   }
 
   function toggleDisabled(box) {
     dispatch({ type: ACTIONS.TOGGLE_DISABLED, payload: { box: box }})
+  }
+
+  function isRightmostNumber(box) {
+    if ((box.isAscending && box.value === 12) || (!box.isAscending && box.value === 2)) {
+      return true
+    }
+    else {
+      return false
+    }
+  }
+
+  function countCompletedForColor(color, boxArray) { // TODO: will likely reuse this snippet, should refactor into util file
+    return boxArray.filter((box) => box.scored === true).length
   }
 
   return (
@@ -66,7 +88,7 @@ function NumberRows({numberData, dispatch}) {
 
 NumberRows.propTypes = {
   dispatch: PropTypes.func,
-  numberData: PropTypes.object,
+  state: PropTypes.object,
 }
 
 export default NumberRows

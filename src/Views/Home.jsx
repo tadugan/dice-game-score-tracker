@@ -5,10 +5,9 @@ import PropTypes from 'prop-types'
 
 function Home({dispatch, state}) {
 
-  const numberData = state
   return (
     <>
-      <NumberRows numberData={numberData} dispatch={dispatch} state={state}></NumberRows>
+      <NumberRows state={state} dispatch={dispatch} state={state}></NumberRows>
       <PenaltyBoxes state={state} dispatch={dispatch}></PenaltyBoxes>
     </>
   )

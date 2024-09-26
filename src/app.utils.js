@@ -22,7 +22,8 @@ function createNumberBoxArray(colorString) {
       color: colorString,
       id: colorString + i.toString(),
       scored: false,
-      disabled: false
+      disabled: false,
+      isAscending: colorString === 'red' || colorString === 'yellow' ? true : false
     })
   }
   
