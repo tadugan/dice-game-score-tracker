@@ -59,6 +59,12 @@ export function countPenalties(penaltyArray) {
   return penaltyArray.filter((penaltyBox) => penaltyBox.isChecked === true).length
 }
 
+export function rollDie() {
+  const min = Math.ceil(1)
+  const max = Math.floor(6)
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
 export const scoreValueArray = [null, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 66, 78]
 
 export const penaltyValueArray = [null, 5, 10, 15, 20]

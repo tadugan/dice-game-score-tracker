@@ -1,3 +1,4 @@
+import DiceRoller from '../Components/DiceRoller'
 import NumberRows from '../Components/NumberRows'
 import PenaltyBoxes from '../Components/PenaltyBoxes'
 import ScoreBoxes from '../Components/ScoreBoxes'
@@ -10,7 +11,8 @@ function Home({dispatch, state}) {
     <>
       <NumberRows state={state} dispatch={dispatch}></NumberRows>
       <PenaltyBoxes state={state} dispatch={dispatch}></PenaltyBoxes>
-      <ScoreBoxes state={state}></ScoreBoxes>
+      {/* <ScoreBoxes state={state}></ScoreBoxes> */}
+      <DiceRoller></DiceRoller>
     </>
   )
 }

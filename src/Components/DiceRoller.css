@@ -1,0 +1,38 @@
+.dice-roller-container {
+  display: flex;
+  gap: 8px;
+  margin: 16px 0 0 0;
+}
+
+.die {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15%;
+  font-size: 24px;
+  font-weight: 500;
+  color: #000000;
+}
+
+.die-red {
+  background-color: #ff3333;
+}
+
+.die-yellow {
+  background-color: #ffff33;
+}
+
+.die-green {
+  background-color: #33ff33;
+}
+
+.die-blue {
+  background-color: #33adff;
+}
+
+.die-white {
+  background-color: #ffffff;
+  color: #000000;
+}
