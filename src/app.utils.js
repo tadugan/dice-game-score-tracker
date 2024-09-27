@@ -54,3 +54,11 @@ export function isRightmostNumber(box) {
 export function countCompletedForColor(boxArray) {
   return boxArray.filter((box) => box.scored === true).length
 }
+
+export function countPenalties(penaltyArray) {
+  return penaltyArray.filter((penaltyBox) => penaltyBox.isChecked === true).length
+}
+
+export const scoreValueArray = [null, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 66, 78]
+
+export const penaltyValueArray = [null, 5, 10, 15, 20]
