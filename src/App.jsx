@@ -1,7 +1,7 @@
 import { useReducer } from 'react'
 import './App.css'
 import Home from './Views/Home.jsx'
-import { createInitialStateObject } from './app.utils.js'
+import { createInitialStateObject, isRightmostNumber } from './app.utils.js'
 
 export const ACTIONS = {
   TOGGLE_STATUS: 'toggleStatus',
@@ -18,6 +18,9 @@ function reducer(state, action) {
         ...state,
         [action.payload.box.color]: state[action.payload.box.color].map(num => {
           if (num.id == action.payload.box.id) {
+            return { ...num, scored: !num.scored}
+          }
+          else if (isRightmostNumber(action.payload.box) && num.value === 'L') {
             return { ...num, scored: !num.scored}
           }
           else if ( disableRowColorCompare(num.color, num.value, action.payload.box.value) && num.scored !== true) {

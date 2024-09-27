@@ -3,6 +3,7 @@ import './NumberRows.css'
 import { ACTIONS } from '../App'
 import classNames from 'classnames'
 import LockIcon from './Icons/LockIcon';
+import { countCompletedForColor, isRightmostNumber } from '../app.utils';
 
 function NumberRows({state, dispatch}) {
 
@@ -54,7 +55,7 @@ function NumberRows({state, dispatch}) {
 
   function toggleStatus(box) {
     if (box.value === 'L') return
-    if (isRightmostNumber(box) && countCompletedForColor(box.color, state[box.color]) < 5) {
+    if (isRightmostNumber(box) && countCompletedForColor(state[box.color]) < 5) {
       return
     }
     dispatch({ type: ACTIONS.TOGGLE_STATUS, payload: { box: box }})
@@ -62,19 +63,6 @@ function NumberRows({state, dispatch}) {
 
   function toggleDisabled(box) {
     dispatch({ type: ACTIONS.TOGGLE_DISABLED, payload: { box: box }})
-  }
-
-  function isRightmostNumber(box) {
-    if ((box.isAscending && box.value === 12) || (!box.isAscending && box.value === 2)) {
-      return true
-    }
-    else {
-      return false
-    }
-  }
-
-  function countCompletedForColor(color, boxArray) { // TODO: will likely reuse this snippet, should refactor into util file
-    return boxArray.filter((box) => box.scored === true).length
   }
 
   return (

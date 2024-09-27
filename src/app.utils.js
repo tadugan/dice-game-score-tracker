@@ -41,3 +41,16 @@ function createNumberBoxArray(colorString) {
 
   return numArray;
 }
+
+export function isRightmostNumber(box) {
+  if ((box.isAscending && box.value === 12) || (!box.isAscending && box.value === 2)) {
+    return true
+  }
+  else {
+    return false
+  }
+}
+
+export function countCompletedForColor(boxArray) {
+  return boxArray.filter((box) => box.scored === true).length
+}
