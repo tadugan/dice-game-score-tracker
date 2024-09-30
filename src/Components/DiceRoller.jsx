@@ -2,6 +2,13 @@ import { useState } from 'react'
 import './DiceRoller.css'
 import { rollDie } from '../app.utils'
 import classNames from 'classnames'
+import DieOneIcon from './Icons/DieOneIcon'
+import DieTwoIcon from './Icons/DieTwoIcon'
+import DieThreeIcon from './Icons/DieThreeIcon'
+import DieFourIcon from './Icons/DieFourIcon'
+import DieFiveIcon from './Icons/DieFiveIcon'
+import DieSixIcon from './Icons/DieSixIcon'
+import { colorMap } from '../app.utils'
 
 function DiceRoller() {
 
@@ -15,16 +22,18 @@ function DiceRoller() {
   ])
 
   const displayDice = diceResults.map(die => {
-    const dieClass = classNames({
-      'die': true,
-      'die-red': die.color === 'red',
-      'die-yellow': die.color === 'yellow',
-      'die-green': die.color === 'green',
-      'die-blue': die.color === 'blue',
-      'die-white': die.color === 'white'
-    }) 
+    // const dieClass = classNames({
+    //   'die': true,
+    //   'die-red': die.color === 'red',
+    //   'die-yellow': die.color === 'yellow',
+    //   'die-green': die.color === 'green',
+    //   'die-blue': die.color === 'blue',
+    //   'die-white': die.color === 'white'
+    // }) 
 
-    return <div key={die.id} className={dieClass}>{die.value}</div>
+    return displayDiceComponent(die)
+    // if (die.value === 1) return <DieOneIcon color={'red'} className={dieClass} key={die.id}></DieOneIcon>
+    // return <div key={die.id} className={dieClass}>{die.value}</div>
   })
 
   function rollDice() {
@@ -35,12 +44,39 @@ function DiceRoller() {
     setDiceResults(newResults)
   }
 
+  function displayDiceComponent(die) {
+    const dieClass = classNames({
+      'die': true,
+      'die-red': die.color === 'red',
+      'die-yellow': die.color === 'yellow',
+      'die-green': die.color === 'green',
+      'die-blue': die.color === 'blue',
+      'die-white': die.color === 'white'
+    }) 
+
+    switch (die.value) {
+      case 1:
+        return <DieOneIcon color={colorMap[die.color]} className={dieClass} key={die.id}></DieOneIcon>
+      case 2:
+        return <DieTwoIcon color={colorMap[die.color]} className={dieClass} key={die.id}></DieTwoIcon>
+      case 3:
+        return <DieThreeIcon color={colorMap[die.color]} className={dieClass} key={die.id}></DieThreeIcon>
+      case 4:
+        return <DieFourIcon color={colorMap[die.color]} className={dieClass} key={die.id}></DieFourIcon>
+      case 5:
+        return <DieFiveIcon color={colorMap[die.color]} className={dieClass} key={die.id}></DieFiveIcon>
+      case 6:
+        return <DieSixIcon color={colorMap[die.color]} className={dieClass} key={die.id}></DieSixIcon>
+      default:
+        return <div key={die.id} className={dieClass}>{die.value}</div>
+    }
+  }
+
   return (
     <>
       <div className='dice-roller-container'>
-        <button onClick={() => rollDice()}>Roll Dice</button>
         { displayDice }
-        {/* {JSON.stringify(diceResults)} */}
+        <button className='roll-dice-btn' onClick={() => rollDice()}>Roll Dice</button>
       </div>
     </>
   )

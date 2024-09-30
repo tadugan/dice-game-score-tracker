@@ -10,30 +10,31 @@ function Home({dispatch, state}) {
 
   const [displayScore, setDisplayScore] = useState(false)
 
+  const displayDiceOrScore = displayScore ? 
+    <ScoreBoxes state={state}></ScoreBoxes> 
+    : 
+    <DiceRoller></DiceRoller>
+
   function toggleScore() {
     setDisplayScore(!displayScore)
   }
 
   return (
-    <>
+    <div className='home-container'>
       <NumberRows state={state} dispatch={dispatch}></NumberRows>
       <PenaltyBoxes state={state} dispatch={dispatch}></PenaltyBoxes>
-      <button onClick={() => toggleScore()}>
-      {
-        displayScore ? 
-        'Switch to Dice Roller'
-        :
-        'Switch to Score' 
-      }
-      </button>
-      {
-        displayScore ? 
-        <ScoreBoxes state={state}></ScoreBoxes> 
-        : 
-        <DiceRoller></DiceRoller>
-      }
-
-    </>
+      <div className='home-toggle-score-dice'>
+        <button className='home-toggle-btn' onClick={() => toggleScore()}>
+        {
+          displayScore ?
+          'Dice Roller'
+          :
+          'View Score'
+        }
+        </button>
+        { displayDiceOrScore }
+      </div>
+    </div>
   )
 }
 

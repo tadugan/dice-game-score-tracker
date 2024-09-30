@@ -1,7 +1,6 @@
 .dice-roller-container {
   display: flex;
   gap: 8px;
-  margin: 16px 0 0 0;
 }
 
 .die {
@@ -35,4 +34,8 @@
 .die-white {
   background-color: #ffffff;
   color: #000000;
+}
+
+.roll-dice-btn {
+  width: 88px;
 }

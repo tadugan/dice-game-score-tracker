@@ -68,3 +68,12 @@ export function rollDie() {
 export const scoreValueArray = [null, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 66, 78]
 
 export const penaltyValueArray = [null, 5, 10, 15, 20]
+
+export const colorMap = {
+  red: '#ff3333',
+  yellow: '#ffff33',
+  green: '#33ff33',
+  blue: '#33adff',
+  white: '#ffffff',
+  black: '#000000'
+}
