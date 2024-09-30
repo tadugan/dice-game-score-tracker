@@ -6,7 +6,8 @@ import { createInitialStateObject, isRightmostNumber } from './app.utils.js'
 export const ACTIONS = {
   TOGGLE_STATUS: 'toggleStatus',
   TOGGLE_DISABLED: 'toggleDisabled',
-  TOGGLE_PENALTY: 'togglePenalty'
+  TOGGLE_PENALTY: 'togglePenalty',
+  LOCK_ROW: 'lockRow'
 }
 
 const initialState = createInitialStateObject()
@@ -52,6 +53,18 @@ function reducer(state, action) {
           }
           else {
             return penaltyBox
+          }
+        })
+      }
+    case ACTIONS.LOCK_ROW:
+      return {
+        ...state,
+        [action.payload.box.color]: state[action.payload.box.color].map(num => {
+          if (!num.scored) {
+            return {...num, disabled: true}
+          }
+          else {
+            return num
           }
         })
       }

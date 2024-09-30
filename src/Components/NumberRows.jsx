@@ -45,12 +45,23 @@ function NumberRows({state, dispatch}) {
   }
 
   function handleClick(box) {
-    if (box.disabled === true) {
+    console.log('handleClick')
+    console.log('in lock', box)
+    if (box.value === 'L' && box.disabled === false) {
+      console.log('in lock', box)
+      lockRow(box)
+    }
+    else if (box.disabled === true) {
       toggleDisabled(box) 
     }
     else {
       toggleStatus(box)
     }
+  }
+
+  function lockRow(box) {
+    console.log('lockRow func')
+    dispatch({ type: ACTIONS.LOCK_ROW, payload: { box: box }})
   }
 
   function toggleStatus(box) {
