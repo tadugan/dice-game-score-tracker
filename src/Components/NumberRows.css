@@ -1,7 +1,7 @@
 .number-row-container {
   display: flex;
   flex-flow: column wrap;
-  gap: 16px;
+  gap: 8px;
 }
 
 .number-row {
