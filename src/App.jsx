@@ -7,7 +7,8 @@ export const ACTIONS = {
   TOGGLE_STATUS: 'toggleStatus',
   TOGGLE_DISABLED: 'toggleDisabled',
   TOGGLE_PENALTY: 'togglePenalty',
-  LOCK_ROW: 'lockRow'
+  LOCK_ROW: 'lockRow',
+  UNLOCK_ROW: 'unlockRow'
 }
 
 const initialState = createInitialStateObject()
@@ -68,6 +69,22 @@ function reducer(state, action) {
           }
         })
       }
+    case ACTIONS.UNLOCK_ROW:
+      return {
+        ...state,
+        [action.payload.box.color]: state[action.payload.box.color].map(num => {
+          if (unlockRowColorCompare(state[action.payload.box.color], num)) {
+            console.log('compare value', num.value)
+            return {...num, disabled: false}
+          }
+          else if (num.value === 'L') {
+            return {...num, disabled: false}
+          }
+          else {
+            return num
+          }
+        })
+      }
     default:
       return state
   }
@@ -79,6 +96,18 @@ function disableRowColorCompare(color, number, scoredNumber) {
   }
   else {
     return number > scoredNumber ? true : false
+  }
+}
+
+function unlockRowColorCompare(numberArray, valueToCompare) {
+  let lastVal;
+  if (valueToCompare.color === 'red' || valueToCompare.color === 'yellow') {
+    lastVal = numberArray.findLast(n => n.scored) || {value: 0}
+    return valueToCompare.value > lastVal.value
+  }
+  else {
+    lastVal = numberArray.findLast(n => n.scored) || {value: 13}
+    return valueToCompare.value < lastVal.value
   }
 }
 
