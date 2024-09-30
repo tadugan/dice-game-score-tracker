@@ -5,15 +5,19 @@ import PenaltyBoxes from '../Components/PenaltyBoxes'
 import ScoreBoxes from '../Components/ScoreBoxes'
 import './Home.css'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
 function Home({dispatch, state}) {
 
   const [displayScore, setDisplayScore] = useState(false)
 
-  const displayDiceOrScore = displayScore ? 
-    <ScoreBoxes state={state}></ScoreBoxes> 
-    : 
-    <DiceRoller></DiceRoller>
+  const classNamesScore = classNames({
+    'hide': !displayScore
+  })
+
+  const classNamesDice = classNames({
+    'hide': displayScore
+  })
 
   function toggleScore() {
     setDisplayScore(!displayScore)
@@ -32,7 +36,12 @@ function Home({dispatch, state}) {
           'View Score'
         }
         </button>
-        { displayDiceOrScore }
+        <div className={classNamesScore}>
+          <ScoreBoxes state={state}></ScoreBoxes>
+        </div>
+        <div className={classNamesDice}>
+          <DiceRoller></DiceRoller> 
+        </div>
       </div>
     </div>
   )

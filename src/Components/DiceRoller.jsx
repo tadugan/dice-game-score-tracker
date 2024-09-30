@@ -22,18 +22,8 @@ function DiceRoller() {
   ])
 
   const displayDice = diceResults.map(die => {
-    // const dieClass = classNames({
-    //   'die': true,
-    //   'die-red': die.color === 'red',
-    //   'die-yellow': die.color === 'yellow',
-    //   'die-green': die.color === 'green',
-    //   'die-blue': die.color === 'blue',
-    //   'die-white': die.color === 'white'
-    // }) 
 
     return displayDiceComponent(die)
-    // if (die.value === 1) return <DieOneIcon color={'red'} className={dieClass} key={die.id}></DieOneIcon>
-    // return <div key={die.id} className={dieClass}>{die.value}</div>
   })
 
   function rollDice() {

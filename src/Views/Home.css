@@ -14,3 +14,7 @@
 .home-toggle-btn {
   width: 88px;
 }
+
+.hide {
+  display: none;
+}
